@@ -3,7 +3,7 @@
 - Different languages have a different term for it, with a slight difference in its implementation (dictionaries -> python, maps -> java, hash tables -> ruby and objects -> JS).
 - They use key/value pair to store and locate data.
 - Data is stored in unordered/random memory locations.
-- The provided key is one way hashed by the language's built-in hash function and then stored.
+- The provided key is passed through hash function to generate a identifier for memory location where data will be stored.
 - In JS, objects can have a key as any data type (internally all of them gets converted to a string).
 - ES6 added map type, they accept any data type as key and maintain insertion order of keys.
 
@@ -43,5 +43,5 @@ Time complexities for few of inbuilt array operations in JS:
 - Given a same input, it will always produce the same hash.
 - Very optimal with O(1) complexity.
 - The keys in hash table pass-through this hash function for every get/set/delete operation. The values are internally accessed by the language based on the output of this hash function.
-- Assigns random memory locations to store this hashed key and value.
+- Assigns random memory locations to store the data.
 - _Collision_ is a state when the hash value of two inputs are the same. This is taken care of by the language internally.
