@@ -12,14 +12,21 @@
 
 ```js
 const linkedList = {
-  value: 5,
-  next: {
-    value: 8,
+  head: {
+    value: 5,
     next: {
-      value: 99,
-      next: null
+      value: 8,
+      next: {
+        value: 99,
+        next: null
+      }
     }
-  }
+  },
+  tail: {
+    value: 99,
+    next: null
+  },
+  length: 3
 };
 ```
 
@@ -36,7 +43,7 @@ Time complexities for few of inbuilt array operations in JS:
 | delete    | O(n)  |
 
 - Lookup/insert/delete is O(n) in worst case scenarios i.e. when it has to loop till end to find the correct node to perform the action.
-- Prepend/append is O(1) as it has to just update the head/tail and just update next/prev pointer of one node.
+- Prepend/append is O(1) as it has to just update the head/tail and just update next/prev pointer of one node. No loops are involved.
 
 ### Variations
 
