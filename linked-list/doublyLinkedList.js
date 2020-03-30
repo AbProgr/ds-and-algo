@@ -1,21 +1,11 @@
-/**
- * Class to generate new linked list node
- *
- * @class Node
- */
 class Node {
   constructor(value) {
+    this.prev = null;
     this.value = value;
     this.next = null;
   }
 }
 
-/**
- * Sample implementation of singly linked list using JS objects
- *
- * @class LinkedList
- * @methods printList, append, prepend, insert and remove
- */
 class LinkedList {
   constructor(value) {
     this.head = new Node(value);
@@ -49,6 +39,8 @@ class LinkedList {
   append(value) {
     // create a new node object
     const newNode = new Node(value);
+    // point prev of new node as the current tail
+    newNode.prev = this.tail;
     // update existing tail's next as this new object
     this.tail.next = newNode;
     // update tail object to point to this new object
@@ -70,6 +62,8 @@ class LinkedList {
     const newNode = new Node(value);
     // point new node's next to existing head
     newNode.next = this.head;
+    // point current heads's prev to new node as new node will be before that
+    this.head.prev = newNode;
     // overwrite current head with the new node object
     this.head = newNode;
     // increment the length of list
@@ -126,15 +120,17 @@ class LinkedList {
       this.prepend(value);
     }
     // the target node where the insert will happen
-    const nodeToInsertAt = this.traverseNodeForAction(index - 1);
+    const nodeToInsertAfter = this.traverseNodeForAction(index - 1);
     // save a ref of the displaced node
-    const nodeToInsertBefore = nodeToInsertAt.next;
+    const nodeToInsertBefore = nodeToInsertAfter.next;
     // create a new node with the value
     const newNode = new Node(value);
     // point new node's next to the displaced node's ref
     newNode.next = nodeToInsertBefore;
+    // point new node's prev as the node after which we need to insert
+    newNode.prev = nodeToInsertAfter;
     // point the new node as next for the insert target node
-    nodeToInsertAt.next = newNode;
+    nodeToInsertAfter.next = newNode;
     // increment length
     this.length++;
     return this.printList();
@@ -156,6 +152,8 @@ class LinkedList {
     const nodeToRemove = nodeBeforeRemove.next;
     // the next pointer of the node that will be removed
     const nextOfNodeToRemove = nodeToRemove.next;
+    // link pointers of after and before of the node that is removed
+    nextOfNodeToRemove.prev = nodeBeforeRemove;
     // point next of node before the removed index to node after the removed index
     nodeBeforeRemove.next = nextOfNodeToRemove;
     // deceremt the length
@@ -171,3 +169,4 @@ linkedList.prepend(25);
 linkedList.prepend(2);
 linkedList.insert(2, 105);
 linkedList.remove(4);
+console.log(linkedList);
