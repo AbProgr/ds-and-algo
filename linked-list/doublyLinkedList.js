@@ -160,6 +160,24 @@ class LinkedList {
     this.length--;
     return this.printList();
   }
+
+  reverse() {
+    // if there is only one node in list
+    if (this.length === 1) {
+      return this.printList();
+    }
+    let first = this.head;
+    let second = this.head.next;
+    while (second) {
+        let temp = second.next;
+        second.next = first;
+        first = second;
+        second = temp;
+    }
+    this.head.next = null;
+    this.head = first;
+    return this.printList();
+  }
 }
 
 const linkedList = new LinkedList(5);
@@ -169,4 +187,5 @@ linkedList.prepend(25);
 linkedList.prepend(2);
 linkedList.insert(2, 105);
 linkedList.remove(4);
-console.log(linkedList);
+linkedList.reverse();
+
